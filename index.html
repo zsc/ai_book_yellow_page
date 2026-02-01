@@ -3702,6 +3702,13 @@
     <script>
         let activeTags = new Set();
 
+        document.querySelectorAll('.tag-btn').forEach(btn => {
+            const styles = getComputedStyle(btn);
+            if (!btn.dataset.baseColor) btn.dataset.baseColor = styles.color;
+            if (!btn.dataset.baseBg) btn.dataset.baseBg = styles.backgroundColor;
+            if (!btn.dataset.baseBorder) btn.dataset.baseBorder = styles.borderColor;
+        });
+
         function filterRepos() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const cards = document.querySelectorAll('.repo-card');
@@ -3731,30 +3738,37 @@
 
         function toggleTag(tag) {
             const btn = document.querySelector(`.tag-btn[data-tag="${tag}"]`);
-            const color = btn.style.color;
-            
+            const baseColor = btn.dataset.baseColor || getComputedStyle(btn).color;
+            const baseBg = btn.dataset.baseBg || getComputedStyle(btn).backgroundColor;
+            const baseBorder = btn.dataset.baseBorder || getComputedStyle(btn).borderColor;
+
             if (activeTags.has(tag)) {
                 activeTags.delete(tag);
                 btn.classList.remove('active');
-                btn.style.background = color + '20';
-                btn.style.color = color;
+                btn.style.background = baseBg;
+                btn.style.color = baseColor;
+                btn.style.borderColor = baseBorder;
             } else {
                 activeTags.add(tag);
                 btn.classList.add('active');
-                btn.style.background = color;
+                btn.style.background = baseColor;
                 btn.style.color = 'white';
+                btn.style.borderColor = baseColor;
             }
-            
+
             filterRepos();
         }
 
         function clearFilter() {
             activeTags.clear();
             document.querySelectorAll('.tag-btn').forEach(btn => {
-                const color = btn.style.color;
+                const baseColor = btn.dataset.baseColor || getComputedStyle(btn).color;
+                const baseBg = btn.dataset.baseBg || getComputedStyle(btn).backgroundColor;
+                const baseBorder = btn.dataset.baseBorder || getComputedStyle(btn).borderColor;
                 btn.classList.remove('active');
-                btn.style.background = color + '20';
-                btn.style.color = color;
+                btn.style.background = baseBg;
+                btn.style.color = baseColor;
+                btn.style.borderColor = baseBorder;
             });
             document.getElementById('searchInput').value = '';
             filterRepos();
