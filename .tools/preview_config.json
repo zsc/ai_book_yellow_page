@@ -1,0 +1,36 @@
+{
+  "special_previews": {
+    "dtw_cvx_demo": {
+      "entry_file": "visualize_all.html",
+      "entry_path": "html/",
+      "has_index_html": false,
+      "description": "Auto-detected entry for dtw_cvx_demo"
+    },
+    "kpsvd_demo": {
+      "entry_file": "audio_kpsvd_visualization.html",
+      "entry_path": "",
+      "has_index_html": false,
+      "description": "Auto-detected entry for kpsvd_demo"
+    },
+    "mel_canny": {
+      "entry_file": "gaoshi_zaomiao_canny.html",
+      "entry_path": "",
+      "has_index_html": false,
+      "description": "Auto-detected entry for mel_canny"
+    },
+    "robot_vs_slime": {
+      "entry_file": "demo.html",
+      "entry_path": "",
+      "has_index_html": false,
+      "description": "Auto-detected entry for robot_vs_slime"
+    }
+  },
+  "entry_file_priority": [
+    "visualize_all.html",
+    "main.html",
+    "demo.html",
+    "app.html",
+    "home.html",
+    "index.html"
+  ]
+}
